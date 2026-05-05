@@ -792,10 +792,15 @@ export default function App() {
   }, [loadDemo]);
 
   // init
-  useEffect(() => { loadLive(); }, []);
   useEffect(() => {
-    if (fetchTime && Object.keys(returnsRef.current).length > 0) computeMetrics();
-  }, [fetchTime]);
+    loadLive();
+  }, [loadLive]);
+
+  useEffect(() => {
+    if (fetchTime && Object.keys(returnsRef.current).length > 0) {
+      computeMetrics();
+    }
+  }, [fetchTime, computeMetrics]);
 
   // intraday tick (3s)
   useEffect(() => {
